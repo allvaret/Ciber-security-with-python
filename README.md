@@ -22,18 +22,15 @@ O código é organizado nas seguintes funções:
 
 A seguir estão algumas das preocupações de segurança identificadas e possíveis melhorias:
 
-*   **Modo Criptográfico:**
-    *   **Problema:** Usar o modo CBC pode ser vulnerável a certos tipos de ataques e não autentica os dados.
-    *   **Melhoria:** Há métodos mais modernos como AES-GCM, que adiciona autenticação e é mais seguro por design.
 *   **Tamanho da Chave:**
     *   **Problema:** Utilizamos um tamanho de chave RSA fixo.
     *   **Melhoria:** Permita tamanhos de chave ajustáveis.
 *   **Segurança da Entrada do Usuário:**
     *   **Problema:** O uso de `input()` sem ser polido pode ser inseguro, lembre-se que é um ambiente de testes.
     *   **Melhoria:** Adicione sanitização, use um mecanismo de entrada de console seguro ou leia as entradas de um arquivo.
-*   **Falta de Autenticação:**
-    *   **Problema:** O código atual não possui autenticação de mensagens, tornando-o vulnerável a ataques man-in-the-middle.
-    *   **Melhoria:** Adicione um código de autenticação de mensagens (MAC) ou assinatura digital para garantir a integridade e autenticidade da mensagem.
+*   **Armazenamento de chaves:**
+    *   **Problema:** A chave privada é gerada e usada no mesmo escopo.
+    *   **Melhoria:** Em um aplicativo do mundo real, você normalmente geraria as chaves RSA uma vez e armazenaria a chave privada com segurança (por exemplo, em um cofre seguro ou criptografado em disco), então carregaria a chave privada do armazenamento seguro quando precisasse descriptografar.
 
 ## Como Usar
 
